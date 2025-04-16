@@ -110,6 +110,7 @@ public class BookingService {
     private BookingDTO convertToDTO(Booking booking) {
         BookingDTO dto = new BookingDTO();
         dto.setId(booking.getId());
+        dto.setCustomerName(booking.getCustomerName());
         dto.setRoom(new RoomDTO(booking.getRoom().getId(), booking.getRoom().getRoomNumber(), booking.getRoom().getCapacity(), booking.getRoom().getPricePerNight(), booking.getRoom().isAvailable()));
         dto.setCheckIn(booking.getCheckIn());
         dto.setCheckOut(booking.getCheckOut());

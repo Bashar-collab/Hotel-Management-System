@@ -36,6 +36,7 @@ public class BookingDTO {
 
     public BookingDTO(Booking booking) {
         this.id = booking.getId();
+        this.customerName = booking.getCustomerName();
         this.room = new RoomDTO(booking.getRoom());
         this.checkIn = booking.getCheckIn();
         this.checkOut = booking.getCheckOut();
