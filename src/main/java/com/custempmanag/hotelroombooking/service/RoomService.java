@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class RoomService {
@@ -23,6 +22,9 @@ public class RoomService {
     // Get rooms by availability filter
     public MessageResponse getRooms(Boolean available) {
         List<Room> rooms = (available == null) ? roomRepository.findAll() : roomRepository.findByAvailable(available);
+        if(rooms.isEmpty()){
+            return new MessageResponse(HttpStatus.NOT_FOUND.toString(), "No rooms found!", null);
+        }
         List<RoomDTO> roomDTOS = rooms.stream().map(RoomDTO::new).toList();
         return new MessageResponse(HttpStatus.OK.toString(), "Rooms retrieved successfully", roomDTOS);
     }
